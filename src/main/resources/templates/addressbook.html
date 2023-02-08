@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SYSC4806 - Lab 4</title>
+</head>
+<body>
+    <h2 th:text="'Address Book ' + ${id}" />
+    <p>Buddies:</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+        </tr>
+        <th:block th:each="buddy : ${buddies}">
+            <tr>
+                <td th:text="${buddy.id}" />
+                <td th:text="${buddy.name}" />
+                <td th:text="|(${buddy.phoneNumber.substring(0, 3)}) ${buddy.phoneNumber.substring(3, 6)}-${buddy.phoneNumber.substring(6, 10)}|" />
+            </tr>
+        </th:block>
+    </table>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 4px;
+        }
+    </style>
+</body>
+</html>
