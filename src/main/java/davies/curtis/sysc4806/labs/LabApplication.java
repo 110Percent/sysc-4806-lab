@@ -17,7 +17,7 @@ public class LabApplication {
     }
 
     @Bean
-    public CommandLineRunner lab3(AddressBookRepository repository) {
+    public CommandLineRunner lab3(AddressBookRepository bookRepository, BuddyInfoRepository buddyRepository) {
         return (args) -> {
             AddressBook book = new AddressBook();
             // save a few customers
@@ -27,18 +27,18 @@ public class LabApplication {
             book.addBuddy(new BuddyInfo("Tessa Teaquill", "6133825968"));
             book.addBuddy(new BuddyInfo("Mike Rotch", "6136136136"));
 
-            repository.save(book);
+            bookRepository.save(book);
 
             // fetch all customers
             log.info("Address Books found with findAll():");
             log.info("------------------------------");
-            for (AddressBook addressBook : repository.findAll()) {
+            for (AddressBook addressBook : bookRepository.findAll()) {
                 log.info(addressBook.toString());
             }
             log.info("");
 
             // fetch an individual address book by ID
-            AddressBook addressBook = repository.findById(1L);
+            AddressBook addressBook = bookRepository.findById(1L);
             log.info("Address Book found with findById(1L):");
             log.info("--------------------------------");
             log.info(addressBook.toString());
